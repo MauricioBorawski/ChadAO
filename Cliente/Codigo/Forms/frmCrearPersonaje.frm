@@ -1681,7 +1681,8 @@ Private Sub boton_Click(Index As Integer)
                     
                 If Not frmMain.Socket1.Connected Then
                     MsgBox "Error: Se ha perdido la conexion con el server."
-                    Unload Me
+                    Call Login
+                    ' Unload Me
                 Else
                     Call Login
                 End If

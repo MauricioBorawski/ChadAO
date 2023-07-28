@@ -1,6 +1,6 @@
 Attribute VB_Name = "InvUsuario"
 'Argentum Online 0.12.2
-'Copyright (C) 2002 Márquez Pablo Ignacio
+'Copyright (C) 2002 Mï¿½rquez Pablo Ignacio
 '
 'This program is free software; you can redistribute it and/or modify
 'it under the terms of the Affero General Public License;
@@ -22,17 +22,17 @@ Attribute VB_Name = "InvUsuario"
 'You can contact me at:
 'morgolock@speedy.com.ar
 'www.geocities.com/gmorgolock
-'Calle 3 número 983 piso 7 dto A
+'Calle 3 nï¿½mero 983 piso 7 dto A
 'La Plata - Pcia, Buenos Aires - Republica Argentina
-'Código Postal 1900
-'Pablo Ignacio Márquez
+'Cï¿½digo Postal 1900
+'Pablo Ignacio Mï¿½rquez
 
 Option Explicit
 
 Public Function TieneObjetosRobables(ByVal UserIndex As Integer) As Boolean
 
 '17/09/02
-'Agregue que la función se asegure que el objeto no es un barco
+'Agregue que la funciï¿½n se asegure que el objeto no es un barco
 
 On Error Resume Next
 
@@ -109,7 +109,7 @@ For j = 1 To MAX_INVENTORY_SLOTS
         End If
 Next j
 
-'[Barrin 17-12-03] Si el usuario dejó de ser Newbie, y estaba en el Newbie Dungeon
+'[Barrin 17-12-03] Si el usuario dejï¿½ de ser Newbie, y estaba en el Newbie Dungeon
 'es transportado a su hogar de origen ;)
 If UCase$(MapInfo(UserList(UserIndex).Pos.map).Restringir) = "NEWBIE" Then
     
@@ -269,7 +269,7 @@ Sub QuitarUserInvItem(ByVal UserIndex As Integer, ByVal Slot As Byte, ByVal Cant
         
         'Quita un objeto
         .amount = .amount - Cantidad
-        '¿Quedan mas?
+        'ï¿½Quedan mas?
         If .amount <= 0 Then
             UserList(UserIndex).Invent.NroItems = UserList(UserIndex).Invent.NroItems - 1
             .ObjIndex = 0
@@ -339,11 +339,11 @@ If num > 0 Then
         'Log de Objetos que se tiran al piso. Pablo (ToxicWaste) 07/09/07
         'Es un Objeto que tenemos que loguear?
         If ObjData(Obj.ObjIndex).Log = 1 Then
-            Call LogDesarrollo(UserList(UserIndex).name & " tiró al piso " & Obj.amount & " " & ObjData(Obj.ObjIndex).name & " Mapa: " & map & " X: " & X & " Y: " & Y)
-        ElseIf Obj.amount > 5000 Then 'Es mucha cantidad? > Subí a 5000 el minimo porque si no se llenaba el log de cosas al pedo. (NicoNZ)
+            Call LogDesarrollo(UserList(UserIndex).name & " tirï¿½ al piso " & Obj.amount & " " & ObjData(Obj.ObjIndex).name & " Mapa: " & map & " X: " & X & " Y: " & Y)
+        ElseIf Obj.amount > 5000 Then 'Es mucha cantidad? > Subï¿½ a 5000 el minimo porque si no se llenaba el log de cosas al pedo. (NicoNZ)
         'Si no es de los prohibidos de loguear, lo logueamos.
             If ObjData(Obj.ObjIndex).NoLog <> 1 Then
-                Call LogDesarrollo(UserList(UserIndex).name & " tiró al piso " & Obj.amount & " " & ObjData(Obj.ObjIndex).name & " Mapa: " & map & " X: " & X & " Y: " & Y)
+                Call LogDesarrollo(UserList(UserIndex).name & " tirï¿½ al piso " & Obj.amount & " " & ObjData(Obj.ObjIndex).name & " Mapa: " & map & " X: " & X & " Y: " & Y)
             End If
         End If
   Else
@@ -391,7 +391,7 @@ Dim X As Integer
 Dim Y As Integer
 Dim Slot As Byte
 
-'¿el user ya tiene un objeto del mismo tipo?
+'ï¿½el user ya tiene un objeto del mismo tipo?
 Slot = 1
 Do Until UserList(UserIndex).Invent.Object(Slot).ObjIndex = MiObj.ObjIndex And _
          UserList(UserIndex).Invent.Object(Slot).amount + MiObj.amount <= MAX_INVENTORY_OBJS
@@ -441,9 +441,9 @@ Dim Obj As ObjData
 Dim MiObj As Obj
 Dim ObjPos As String
 
-'¿Hay algun obj?
+'ï¿½Hay algun obj?
 If MapData(UserList(UserIndex).Pos.map, UserList(UserIndex).Pos.X, UserList(UserIndex).Pos.Y).ObjInfo.ObjIndex > 0 Then
-    '¿Esta permitido agarrar este obj?
+    'ï¿½Esta permitido agarrar este obj?
     If ObjData(MapData(UserList(UserIndex).Pos.map, UserList(UserIndex).Pos.X, UserList(UserIndex).Pos.Y).ObjInfo.ObjIndex).Agarrable <> 1 Then
         Dim X As Integer
         Dim Y As Integer
@@ -471,19 +471,19 @@ If MapData(UserList(UserIndex).Pos.map, UserList(UserIndex).Pos.X, UserList(User
             'Es un Objeto que tenemos que loguear?
             If ObjData(MiObj.ObjIndex).Log = 1 Then
                 ObjPos = " Mapa: " & UserList(UserIndex).Pos.map & " X: " & UserList(UserIndex).Pos.X & " Y: " & UserList(UserIndex).Pos.Y
-                Call LogDesarrollo(UserList(UserIndex).name & " juntó del piso " & MiObj.amount & " " & ObjData(MiObj.ObjIndex).name & ObjPos)
+                Call LogDesarrollo(UserList(UserIndex).name & " juntï¿½ del piso " & MiObj.amount & " " & ObjData(MiObj.ObjIndex).name & ObjPos)
             ElseIf MiObj.amount > MAX_INVENTORY_OBJS - 1000 Then 'Es mucha cantidad?
                 'Si no es de los prohibidos de loguear, lo logueamos.
                 If ObjData(MiObj.ObjIndex).NoLog <> 1 Then
                     ObjPos = " Mapa: " & UserList(UserIndex).Pos.map & " X: " & UserList(UserIndex).Pos.X & " Y: " & UserList(UserIndex).Pos.Y
-                    Call LogDesarrollo(UserList(UserIndex).name & " juntó del piso " & MiObj.amount & " " & ObjData(MiObj.ObjIndex).name & ObjPos)
+                    Call LogDesarrollo(UserList(UserIndex).name & " juntï¿½ del piso " & MiObj.amount & " " & ObjData(MiObj.ObjIndex).name & ObjPos)
                 End If
             End If
         End If
         
     End If
 Else
-    Call WriteConsoleMsg(1, UserIndex, "No hay nada aquí.", FontTypeNames.FONTTYPE_INFO)
+    Call WriteConsoleMsg(1, UserIndex, "No hay nada aquï¿½.", FontTypeNames.FONTTYPE_INFO)
 End If
 
 End Sub
@@ -905,8 +905,8 @@ Sub UseInvItem(ByVal UserIndex As Integer, ByVal Slot As Byte)
 'Author: Unknown
 'Last modified: 24/01/2007
 'Handels the usage of items from inventory box.
-'24/01/2007 Pablo (ToxicWaste) - Agrego el Cuerno de la Armada y la Legión.
-'24/01/2007 Pablo (ToxicWaste) - Utilización nueva de Barco en lvl 20 por clase Pirata y Pescador.
+'24/01/2007 Pablo (ToxicWaste) - Agrego el Cuerno de la Armada y la Legiï¿½n.
+'24/01/2007 Pablo (ToxicWaste) - Utilizaciï¿½n nueva de Barco en lvl 20 por clase Pirata y Pescador.
 '*************************************************
 
 Dim Obj As ObjData
@@ -935,7 +935,7 @@ End If
 If Obj.OBJType = eOBJType.otWeapon Then
     If Obj.proyectil = 1 Then
         If Not .flags.ModoCombate Then
-            Call WriteConsoleMsg(1, UserIndex, "No estás en modo de combate, presiona la tecla ""C"" para pasar al modo combate.", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "No estï¿½s en modo de combate, presiona la tecla ""C"" para pasar al modo combate.", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
@@ -956,7 +956,7 @@ ObjIndex = .Invent.Object(Slot).ObjIndex
 Select Case Obj.OBJType
     Case eOBJType.otUseOnce
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
 
@@ -966,7 +966,7 @@ Call WriteConsoleMsg(1, UserIndex, "Solo puedes usarla si te encuentras vivo", F
 Exit Sub
 End If
 If UserList(UserIndex).flags.invisible = 1 Then
-Call WriteConsoleMsg(1, UserIndex, "¡¡Ya estas Invisible joder!!", FontTypeNames.FONTTYPE_GUILD)
+Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Ya estas Invisible joder!!", FontTypeNames.FONTTYPE_GUILD)
 Exit Sub
 Else
 UserList(UserIndex).flags.invisible = 0
@@ -997,7 +997,7 @@ End If 'Mayco Goy
 
     Case eOBJType.otGuita
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
@@ -1011,7 +1011,7 @@ End If 'Mayco Goy
         
     Case eOBJType.otWeapon
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
@@ -1032,12 +1032,12 @@ End If 'Mayco Goy
             End If
             'liquid: muevo esto aca adentro, para que solo pida modo combate si estamos por usar el arco
             If Not .flags.ModoCombate Then
-                Call WriteConsoleMsg(1, UserIndex, "No estás en modo de combate, presiona la tecla ""C"" para pasar al modo combate.", FontTypeNames.FONTTYPE_INFO)
+                Call WriteConsoleMsg(1, UserIndex, "No estï¿½s en modo de combate, presiona la tecla ""C"" para pasar al modo combate.", FontTypeNames.FONTTYPE_INFO)
                 Exit Sub
             End If
             Call WriteWorkRequestTarget(UserIndex, Proyectiles)
         Else
-            If .flags.TargetObj = Leña Then
+            If .flags.TargetObj = Leï¿½a Then
                 If .Invent.Object(Slot).ObjIndex = DAGA Then
                     If .Invent.Object(Slot).Equipped = 0 Then
                         Call WriteConsoleMsg(1, UserIndex, "Antes de usar la herramienta deberias equipartela.", FontTypeNames.FONTTYPE_INFO)
@@ -1052,9 +1052,9 @@ End If 'Mayco Goy
 
         
         Select Case ObjIndex
-            Case CAÑA_PESCA, RED_PESCA
+            Case CAï¿½A_PESCA, RED_PESCA
                 Call WriteWorkRequestTarget(UserIndex, eSkill.Pesca)
-            Case HACHA_LEÑADOR
+            Case HACHA_LEï¿½ADOR
                 Call WriteWorkRequestTarget(UserIndex, eSkill.Talar)
             Case PIQUETE_MINERO
                 Call WriteWorkRequestTarget(UserIndex, eSkill.Mineria)
@@ -1068,12 +1068,12 @@ End If 'Mayco Goy
     
     Case eOBJType.otPociones
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
         If Not IntervaloPermiteGolpeUsar(UserIndex, False) Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Debes esperar unos momentos para tomar otra poción!!", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Debes esperar unos momentos para tomar otra pociï¿½n!!", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
@@ -1169,7 +1169,7 @@ End If
 
      Case eOBJType.otBebidas
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         .Stats.MinAGU = .Stats.MinAGU + Obj.MinSed
@@ -1187,17 +1187,17 @@ End If
     
     Case eOBJType.otLlaves
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
         If .flags.TargetObj = 0 Then Exit Sub
         TargObj = ObjData(.flags.TargetObj)
-        '¿El objeto clickeado es una puerta?
+        'ï¿½El objeto clickeado es una puerta?
         If TargObj.OBJType = eOBJType.otPuertas Then
-            '¿Esta cerrada?
+            'ï¿½Esta cerrada?
             If TargObj.Cerrada = 1 Then
-                  '¿Cerrada con llave?
+                  'ï¿½Cerrada con llave?
                   If TargObj.Llave > 0 Then
                      If TargObj.clave = Obj.clave Then
          
@@ -1230,11 +1230,11 @@ End If
     
     Case eOBJType.otBotellaVacia
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         If Not HayAgua(.Pos.map, .flags.TargetX, .flags.TargetY) Then
-            Call WriteConsoleMsg(1, UserIndex, "No hay agua allí.", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "No hay agua allï¿½.", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         MiObj.amount = 1
@@ -1248,7 +1248,7 @@ End If
     
     Case eOBJType.otBotellaLlena
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         .Stats.MinAGU = .Stats.MinAGU + Obj.MinSed
@@ -1267,7 +1267,7 @@ End If
     
     Case eOBJType.otPergaminos
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
@@ -1284,21 +1284,21 @@ End If
         End If
     Case eOBJType.otMinerales
         If .flags.Muerto = 1 Then
-             Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+             Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
              Exit Sub
         End If
         Call WriteWorkRequestTarget(UserIndex, FundirMetal)
        
     Case eOBJType.otInstrumentos
         If .flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
         
-        If Obj.Real Then '¿Es el Cuerno Real?
+        If Obj.Real Then 'ï¿½Es el Cuerno Real?
             If FaccionPuedeUsarItem(UserIndex, ObjIndex) Then
                 If MapInfo(.Pos.map).Pk = False Then
-                    Call WriteConsoleMsg(1, UserIndex, "No hay Peligro aquí. Es Zona Segura ", FontTypeNames.FONTTYPE_INFO)
+                    Call WriteConsoleMsg(1, UserIndex, "No hay Peligro aquï¿½. Es Zona Segura ", FontTypeNames.FONTTYPE_INFO)
                     Exit Sub
                 End If
                 Call SendData(SendTarget.toMap, .Pos.map, PrepareMessagePlayWave(Obj.Snd1, .Pos.X, .Pos.Y))
@@ -1307,16 +1307,16 @@ End If
                 Call WriteConsoleMsg(1, UserIndex, "Solo Miembros de la Armada Real pueden usar este cuerno.", FontTypeNames.FONTTYPE_INFO)
                 Exit Sub
             End If
-        ElseIf Obj.Caos Then '¿Es el Cuerno Legión?
+        ElseIf Obj.Caos Then 'ï¿½Es el Cuerno Legiï¿½n?
             If FaccionPuedeUsarItem(UserIndex, ObjIndex) Then
                 If MapInfo(.Pos.map).Pk = False Then
-                    Call WriteConsoleMsg(1, UserIndex, "No hay Peligro aquí. Es Zona Segura ", FontTypeNames.FONTTYPE_INFO)
+                    Call WriteConsoleMsg(1, UserIndex, "No hay Peligro aquï¿½. Es Zona Segura ", FontTypeNames.FONTTYPE_INFO)
                     Exit Sub
                 End If
                 Call SendData(SendTarget.toMap, .Pos.map, PrepareMessagePlayWave(Obj.Snd1, .Pos.X, .Pos.Y))
                 Exit Sub
             Else
-                Call WriteConsoleMsg(1, UserIndex, "Solo Miembros de la Legión Oscura pueden usar este cuerno.", FontTypeNames.FONTTYPE_INFO)
+                Call WriteConsoleMsg(1, UserIndex, "Solo Miembros de la Legiï¿½n Oscura pueden usar este cuerno.", FontTypeNames.FONTTYPE_INFO)
                 Exit Sub
             End If
         End If
@@ -1325,7 +1325,7 @@ End If
        
     Case eOBJType.otMonturas
             If UserList(UserIndex).flags.Muerto = 1 Then
-                Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Los muertos no dominan los animales. ", FontTypeNames.FONTTYPE_INFO)
+                Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Los muertos no dominan los animales. ", FontTypeNames.FONTTYPE_INFO)
                 Exit Sub
             End If
             Call DoEquita(UserIndex, ObjIndex, Slot)
@@ -1339,12 +1339,12 @@ End If
                 Or .flags.Navegando = 1 Then
             Call DoNavega(UserIndex, Obj, Slot)
         Else
-            Call WriteConsoleMsg(1, UserIndex, "¡Debes aproximarte al agua para usar el barco!", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½Debes aproximarte al agua para usar el barco!", FontTypeNames.FONTTYPE_INFO)
         End If
         
     Case eOBJType.otPasajes
         If UserList(UserIndex).flags.Muerto = 1 Then
-            Call WriteConsoleMsg(1, UserIndex, "¡¡Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "ï¿½ï¿½Estas muerto!! Solo podes usar items cuando estas vivo. ", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
        
@@ -1359,7 +1359,7 @@ End If
         End If
        
         If Distancia(Npclist(UserList(UserIndex).flags.TargetNPC).Pos, UserList(UserIndex).Pos) > 3 Then
-            Call WriteConsoleMsg(1, UserIndex, "Estás demasiado lejos del vendedor.", FontTypeNames.FONTTYPE_INFO)
+            Call WriteConsoleMsg(1, UserIndex, "Estï¿½s demasiado lejos del vendedor.", FontTypeNames.FONTTYPE_INFO)
             Exit Sub
         End If
 
@@ -1374,7 +1374,7 @@ End If
         End If
        
         Call WarpUserChar(UserIndex, Obj.HastaMap, Obj.HastaX, Obj.HastaY, True)
-        Call WriteConsoleMsg(1, UserIndex, "Has viajado por varios días, te sientes exhausto!", FontTypeNames.FONTTYPE_CENTINELA)
+        Call WriteConsoleMsg(1, UserIndex, "Has viajado por varios dï¿½as, te sientes exhausto!", FontTypeNames.FONTTYPE_CENTINELA)
         UserList(UserIndex).Stats.MinAGU = 0
         UserList(UserIndex).Stats.MinHam = 0
         UserList(UserIndex).flags.Sed = 1
@@ -1455,7 +1455,7 @@ Sub TirarTodosLosItems(ByVal UserIndex As Integer)
                 MiObj.amount = UserList(UserIndex).Invent.Object(i).amount
                 MiObj.ObjIndex = ItemIndex
                 'Pablo (ToxicWaste) 24/01/2007
-                'Si es pirata y usa un Galeón entonces no explota los items. (en el agua)
+                'Si es pirata y usa un Galeï¿½n entonces no explota los items. (en el agua)
                 If UserList(UserIndex).Clase = eClass.Mercenario And UserList(UserIndex).Invent.BarcoObjIndex = 476 Then
                     Tilelibre UserList(UserIndex).Pos, NuevaPos, MiObj, False, True
                 Else

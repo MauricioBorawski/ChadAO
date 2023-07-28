@@ -37,51 +37,51 @@ Private Type tMapHeader
 End Type
 
 Private Type tDatosBloqueados
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
 End Type
 
 Private Type tDatosGrh
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     grhindex As Long
 End Type
 
 Private Type tDatosTrigger
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     Trigger As Integer
 End Type
 
 Private Type tDatosLuces
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     color As Long
     Rango As Byte
 End Type
 
 Private Type tDatosParticulas
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     Particula As Long
 End Type
 
 Private Type tDatosNPC
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     NPCIndex As Integer
 End Type
 
 Private Type tDatosObjs
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     OBJIndex As Integer
     ObjAmmount As Integer
 End Type
 
 Private Type tDatosTE
-    x As Integer
-    y As Integer
+    X As Integer
+    Y As Integer
     DestM As Integer
     DestX As Integer
     DestY As Integer
@@ -205,10 +205,7 @@ Sub SetConnected()
     'Load main form
     frmMain.Visible = True
     
-    Call AddtoRichTextBox(frmMain.RecChat, "Bienvenido a CoverAO", 255, 128, 1)
-    Call AddtoRichTextBox(frmMain.RecChat, "Queremos Agradecer al Host Skyserv por el servicio", 255, 128, 1)
-    Call AddtoRichTextBox(frmMain.RecChat, "Para Más Informacion www.Cover-AO.com.ar", 255, 128, 1)
-
+    Call AddtoRichTextBox(frmMain.RecChat, "Bienvenido a ChadAO, un mod de CoverAO", 255, 128, 1)
 End Sub
 
 
@@ -267,7 +264,7 @@ Private Sub CheckKeys()
             End If
             
             ' We haven't moved - Update 3D sounds!
-            Call Audio.MoveListener(UserPos.x, UserPos.y)
+            Call Audio.MoveListener(UserPos.X, UserPos.Y)
         Else
             Dim kp As Boolean
             kp = (GetKeyState(CustomKeys.BindedKey(eKeyType.mKeyUp)) < 0) Or _
@@ -279,7 +276,7 @@ Private Sub CheckKeys()
                 Call RandomMove
             Else
                 ' We haven't moved - Update 3D sounds!
-                Call Audio.MoveListener(UserPos.x, UserPos.y)
+                Call Audio.MoveListener(UserPos.X, UserPos.Y)
             End If
             
             Call DibujarMiniMapPos
@@ -316,6 +313,7 @@ Extract_File Maps, App.Path & "\Recursos\", "mapa" & MapRoute & ".csm", App.Path
 
 fh = FreeFile
 Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As fh
+
     Get #fh, , MH
     Get #fh, , MapSize
     Get #fh, , MapDat
@@ -330,7 +328,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim Blqs(1 To .NumeroBloqueados)
             Get #fh, , Blqs
             For i = 1 To .NumeroBloqueados
-                MapData(Blqs(i).x, Blqs(i).y).Blocked = 1
+                MapData(Blqs(i).X, Blqs(i).Y).Blocked = 1
             Next i
         End If
         
@@ -338,7 +336,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim L2(1 To .NumeroLayers(2))
             Get #fh, , L2
             For i = 1 To .NumeroLayers(2)
-                InitGrh MapData(L2(i).x, L2(i).y).Graphic(2), L2(i).grhindex
+                InitGrh MapData(L2(i).X, L2(i).Y).Graphic(2), L2(i).grhindex
             Next i
         End If
         
@@ -346,7 +344,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim L3(1 To .NumeroLayers(3))
             Get #fh, , L3
             For i = 1 To .NumeroLayers(3)
-                InitGrh MapData(L3(i).x, L3(i).y).Graphic(3), L3(i).grhindex
+                InitGrh MapData(L3(i).X, L3(i).Y).Graphic(3), L3(i).grhindex
             Next i
         End If
         
@@ -354,7 +352,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim L4(1 To .NumeroLayers(4))
             Get #fh, , L4
             For i = 1 To .NumeroLayers(4)
-                InitGrh MapData(L4(i).x, L4(i).y).Graphic(4), L4(i).grhindex
+                InitGrh MapData(L4(i).X, L4(i).Y).Graphic(4), L4(i).grhindex
             Next i
         End If
         
@@ -362,7 +360,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim Triggers(1 To .NumeroTriggers)
             Get #fh, , Triggers
             For i = 1 To .NumeroTriggers
-                MapData(Triggers(i).x, Triggers(i).y).Trigger = Triggers(i).Trigger
+                MapData(Triggers(i).X, Triggers(i).Y).Trigger = Triggers(i).Trigger
             Next i
         End If
         
@@ -370,7 +368,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim Particulas(1 To .NumeroParticulas)
             Get #fh, , Particulas
             For i = 1 To .NumeroParticulas
-                MapData(Particulas(i).x, Particulas(i).y).particle_group_index = General_Particle_Create(Particulas(i).Particula, Particulas(i).x, Particulas(i).y)
+                MapData(Particulas(i).X, Particulas(i).Y).particle_group_index = General_Particle_Create(Particulas(i).Particula, Particulas(i).X, Particulas(i).Y)
             Next i
         End If
         
@@ -378,7 +376,7 @@ Open App.Path & "\Recursos\mapa" & MapRoute & ".csm" For Binary Access Read As f
             ReDim Luces(1 To .NumeroLuces)
             Get #fh, , Luces
             For i = 1 To .NumeroLuces
-                Call Engine.Light_Create(Luces(i).x, Luces(i).y, Luces(i).color, Luces(i).Rango)
+                Call Engine.Light_Create(Luces(i).X, Luces(i).Y, Luces(i).color, Luces(i).Rango)
             Next i
         End If
         
@@ -473,7 +471,7 @@ End Sub
 Function ReadField(ByVal Pos As Integer, ByRef Text As String, ByVal SepASCII As Byte) As String
 '*****************************************************************
 'Gets a field from a delimited string
-'Author: Juan Martín Sotuyo Dodero (Maraxus)
+'Author: Juan Martï¿½n Sotuyo Dodero (Maraxus)
 'Last Modify Date: 11/15/2004
 '*****************************************************************
     Dim i As Long
@@ -498,7 +496,7 @@ End Function
 Function FieldCount(ByRef Text As String, ByVal SepASCII As Byte) As Long
 '*****************************************************************
 'Gets the number of fields in a delimited string
-'Author: Juan Martín Sotuyo Dodero (Maraxus)
+'Author: Juan Martï¿½n Sotuyo Dodero (Maraxus)
 'Last Modify Date: 07/29/2007
 '*****************************************************************
     Dim count As Long
@@ -525,7 +523,7 @@ End Function
 
 Sub Main()
     
-    If MsgBox("CoverAO Desea cambiar la Resolucion a cantalla completa? ", vbYesNo, "Resolucion") = vbYes Then
+    If MsgBox("ChadAO Desea cambiar la Resolucion a pantalla completa? ", vbYesNo, "Resolucion") = vbYes Then
 Call Resolution.SetResolution
 End If
     
@@ -564,7 +562,7 @@ End If
     Call Audio.Initialize(frmMain.hwnd, App.Path & "\RECURSOS\WAV\", App.Path & "\RECURSOS\MIDI\")
     Call frmCargando.progresoConDelay(95)
     
-    'Inicializamos el inventario gráfico
+    'Inicializamos el inventario grï¿½fico
     Call Inventario.Initialize(frmMain.picInv)
     frmMain.Socket1.Startup
     Call frmCargando.progresoConDelay(100)
@@ -574,13 +572,13 @@ End If
     frmCargando.Visible = False
     Unload frmCargando
     
-    'Inicialización de variables globales
+    'Inicializaciï¿½n de variables globales
     PrimeraVez = True
     prgRun = True
     Pausa = False
     
        frmPresentacion.Picture = LoadInterface("presentacion")
-    frmPresentacion.Show vbModal    'Es modal, así que se detiene la ejecución de Main hasta que se desaparece
+    frmPresentacion.Show vbModal    'Es modal, asï¿½ que se detiene la ejecuciï¿½n de Main hasta que se desaparece
     
     frmConnect.Visible = True
     
@@ -608,7 +606,7 @@ End If
     Call MainTimer.Start(TimersIndex.CastAttack)
     
     Do While prgRun
-        'Sólo dibujamos si la ventana no está minimizada
+        'Sï¿½lo dibujamos si la ventana no estï¿½ minimizada
         If IsAppActive Then
         
             If frmMain.Visible Then
@@ -638,7 +636,7 @@ End Sub
 
 Private Sub InicializarNombres()
 '**************************************************************
-'Author: Juan Martín Sotuyo Dodero (Maraxus)
+'Author: Juan Martï¿½n Sotuyo Dodero (Maraxus)
 'Last Modify Date: 11/27/2005
 'Inicializa los nombres de razas, ciudades, clases, skills, atributos, etc.
 '**************************************************************
@@ -675,7 +673,7 @@ Private Sub InicializarNombres()
     SkillsNames(eSkill.Tacticas) = "Tacticas de combate"
     SkillsNames(eSkill.Armas) = "Combate con armas"
     SkillsNames(eSkill.Meditar) = "Meditar"
-    SkillsNames(eSkill.Apuñalar) = "Apuñalar"
+    SkillsNames(eSkill.Apuï¿½alar) = "Apuï¿½alar"
     SkillsNames(eSkill.Ocultarse) = "Ocultarse"
     SkillsNames(eSkill.Supervivencia) = "Supervivencia"
     SkillsNames(eSkill.Talar) = "Talar arboles"
@@ -745,7 +743,7 @@ Call SendMessage(hwnd, WM_NCLBUTTONDOWN, HTCAPTION, ByVal 0&)
 End Sub
 Public Sub CloseClient()
 '**************************************************************
-'Author: Juan Martín Sotuyo Dodero (Maraxus)
+'Author: Juan Martï¿½n Sotuyo Dodero (Maraxus)
 'Last Modify Date: 8/14/2007
 'Frees all used resources, cleans up and leaves
 '**************************************************************
@@ -757,7 +755,7 @@ Public Sub CloseClient()
     
     If NoRes = 0 Then Call Resolution.ResetResolution
     
-    'Destruimos los objetos públicos creados
+    'Destruimos los objetos pï¿½blicos creados
     Set CustomKeys = Nothing
     Set SurfaceDB = Nothing
     Set Dialogos = Nothing
@@ -794,7 +792,7 @@ rgb_list(3) = RGB(StreamData(ParticulaInd).colortint(3).r, StreamData(ParticulaI
 
 End Function
 
-Public Function General_Particle_Create(ByVal ParticulaInd As Long, ByVal x As Integer, ByVal y As Integer, Optional ByVal particle_life As Long = 0, Optional ByVal OffsetX As Integer, Optional ByVal OffsetY As Integer) As Long
+Public Function General_Particle_Create(ByVal ParticulaInd As Long, ByVal X As Integer, ByVal Y As Integer, Optional ByVal particle_life As Long = 0, Optional ByVal OffsetX As Integer, Optional ByVal OffsetY As Integer) As Long
 
 Dim rgb_list(0 To 3) As Long
 rgb_list(0) = RGB(StreamData(ParticulaInd).colortint(0).r, StreamData(ParticulaInd).colortint(0).g, StreamData(ParticulaInd).colortint(0).b)
@@ -802,7 +800,7 @@ rgb_list(1) = RGB(StreamData(ParticulaInd).colortint(1).r, StreamData(ParticulaI
 rgb_list(2) = RGB(StreamData(ParticulaInd).colortint(2).r, StreamData(ParticulaInd).colortint(2).g, StreamData(ParticulaInd).colortint(2).b)
 rgb_list(3) = RGB(StreamData(ParticulaInd).colortint(3).r, StreamData(ParticulaInd).colortint(3).g, StreamData(ParticulaInd).colortint(3).b)
 
-General_Particle_Create = Engine.Particle_Group_Create(x, y, StreamData(ParticulaInd).grh_list, rgb_list(), StreamData(ParticulaInd).NumOfParticles, ParticulaInd, _
+General_Particle_Create = Engine.Particle_Group_Create(X, Y, StreamData(ParticulaInd).grh_list, rgb_list(), StreamData(ParticulaInd).NumOfParticles, ParticulaInd, _
     StreamData(ParticulaInd).AlphaBlend, IIf(particle_life = 0, StreamData(ParticulaInd).life_counter, particle_life), StreamData(ParticulaInd).speed, , StreamData(ParticulaInd).x1 + OffsetX, StreamData(ParticulaInd).y1 + OffsetY, StreamData(ParticulaInd).angle, _
     StreamData(ParticulaInd).vecx1, StreamData(ParticulaInd).vecx2, StreamData(ParticulaInd).vecy1, StreamData(ParticulaInd).vecy2, _
     StreamData(ParticulaInd).life1, StreamData(ParticulaInd).life2, StreamData(ParticulaInd).friction, StreamData(ParticulaInd).spin_speedL, _
@@ -833,7 +831,7 @@ ErrorHandler:
 End Function
 Public Sub General_Long_Color_to_RGB(ByVal long_color As Long, ByRef red As Integer, ByRef green As Integer, ByRef blue As Integer)
 '***********************************
-'Coded by Juan Martín Sotuyo Dodero (juansotuyo@hotmail.com)
+'Coded by Juan Martï¿½n Sotuyo Dodero (juansotuyo@hotmail.com)
 'Last Modified: 2/19/03
 'Takes a long value and separates RGB values to the given variables
 '***********************************

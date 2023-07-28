@@ -169,3 +169,6 @@ End If
 End Function
  
 
+Private Sub imgProgress_Click()
+
+End Sub

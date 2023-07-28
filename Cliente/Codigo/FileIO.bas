@@ -1,6 +1,6 @@
 Attribute VB_Name = "ES"
 'Argentum Online 0.12.2
-'Copyright (C) 2002 Márquez Pablo Ignacio
+'Copyright (C) 2002 Mï¿½rquez Pablo Ignacio
 '
 'This program is free software; you can redistribute it and/or modify
 'it under the terms of the Affero General Public License;
@@ -22,10 +22,10 @@ Attribute VB_Name = "ES"
 'You can contact me at:
 'morgolock@speedy.com.ar
 'www.geocities.com/gmorgolock
-'Calle 3 número 983 piso 7 dto A
+'Calle 3 nï¿½mero 983 piso 7 dto A
 'La Plata - Pcia, Buenos Aires - Republica Argentina
-'Código Postal 1900
-'Pablo Ignacio Márquez
+'Cï¿½digo Postal 1900
+'Pablo Ignacio Mï¿½rquez
 
 Option Explicit
 '***************************
@@ -255,10 +255,10 @@ Public Sub CargarHechizos()
 '#               ATENCION PELIGRO                  #
 '###################################################
 '
-'  ¡¡¡¡ NO USAR GetVar PARA LEER Hechizos.dat !!!!
+'  ï¿½ï¿½ï¿½ï¿½ NO USAR GetVar PARA LEER Hechizos.dat !!!!
 '
-'El que ose desafiar esta LEY, se las tendrá que ver
-'con migo. Para leer Hechizos.dat se deberá usar
+'El que ose desafiar esta LEY, se las tendrï¿½ que ver
+'con migo. Para leer Hechizos.dat se deberï¿½ usar
 'la nueva clase clsLeerInis.
 '
 'Alejo
@@ -611,9 +611,9 @@ Sub LoadBalance()
         ModClase(i).Evasion = val(GetVar(DatPath & "Balance.dat", "MODEVASION", ListaClases(i)))
         ModClase(i).AtaqueArmas = val(GetVar(DatPath & "Balance.dat", "MODATAQUEARMAS", ListaClases(i)))
         ModClase(i).AtaqueProyectiles = val(GetVar(DatPath & "Balance.dat", "MODATAQUEPROYECTILES", ListaClases(i)))
-        ModClase(i).DañoArmas = val(GetVar(DatPath & "Balance.dat", "MODDAÑOARMAS", ListaClases(i)))
-        ModClase(i).DañoProyectiles = val(GetVar(DatPath & "Balance.dat", "MODDAÑOPROYECTILES", ListaClases(i)))
-        ModClase(i).DañoWrestling = val(GetVar(DatPath & "Balance.dat", "MODDAÑOWRESTLING", ListaClases(i)))
+        ModClase(i).Daï¿½oArmas = val(GetVar(DatPath & "Balance.dat", "MODDAï¿½OARMAS", ListaClases(i)))
+        ModClase(i).Daï¿½oProyectiles = val(GetVar(DatPath & "Balance.dat", "MODDAï¿½OPROYECTILES", ListaClases(i)))
+        ModClase(i).Daï¿½oWrestling = val(GetVar(DatPath & "Balance.dat", "MODDAï¿½OWRESTLING", ListaClases(i)))
         ModClase(i).Escudo = val(GetVar(DatPath & "Balance.dat", "MODESCUDO", ListaClases(i)))
     Next i
     
@@ -631,7 +631,7 @@ Sub LoadBalance()
         ModVida(i) = val(GetVar(DatPath & "Balance.dat", "MODVIDA", ListaClases(i)))
     Next i
     
-    'Distribución de Vida
+    'Distribuciï¿½n de Vida
     For i = 1 To 5
         DistribucionEnteraVida(i) = val(GetVar(DatPath & "Balance.dat", "DISTRIBUCION", "E" + CStr(i)))
     Next i
@@ -668,10 +668,10 @@ Sub LoadOBJData()
 '#               ATENCION PELIGRO                  #
 '###################################################
 '
-'¡¡¡¡ NO USAR GetVar PARA LEER DESDE EL OBJ.DAT !!!!
+'ï¿½ï¿½ï¿½ï¿½ NO USAR GetVar PARA LEER DESDE EL OBJ.DAT !!!!
 '
-'El que ose desafiar esta LEY, se las tendrá que ver
-'con migo. Para leer desde el OBJ.DAT se deberá usar
+'El que ose desafiar esta LEY, se las tendrï¿½ que ver
+'con migo. Para leer desde el OBJ.DAT se deberï¿½ usar
 'la nueva clase clsLeerInis.
 '
 'Alejo
@@ -754,7 +754,7 @@ For Object = 1 To NumObjDatas
                 
             Case eOBJType.otWeapon
                 ObjData(Object).WeaponAnim = val(Leer.GetValue("OBJ" & Object, "Anim"))
-                ObjData(Object).Apuñala = val(Leer.GetValue("OBJ" & Object, "Apuñala"))
+                ObjData(Object).Apuï¿½ala = val(Leer.GetValue("OBJ" & Object, "Apuï¿½ala"))
                 ObjData(Object).Envenena = val(Leer.GetValue("OBJ" & Object, "Envenena"))
                 ObjData(Object).MaxHIT = val(Leer.GetValue("OBJ" & Object, "MaxHIT"))
                 ObjData(Object).MinHIT = val(Leer.GetValue("OBJ" & Object, "MinHIT"))
@@ -1214,7 +1214,7 @@ On Error GoTo man
     
     ReDim MapData(1 To NumMaps, XMinMapSize To XMaxMapSize, YMinMapSize To YMaxMapSize) As MapBlock
     ReDim MapInfo(1 To NumMaps) As MapInfo
-
+    
     For map = 1 To NumMaps
         
         tFileName = App.Path & MapPath & "Mapa" & map
@@ -1403,7 +1403,6 @@ Dim j As Long
     Else
         MapInfo(map).Pk = False
     End If
-    
     
     MapInfo(map).Terreno = MapDat.terrain
     MapInfo(map).Zona = MapDat.zone
@@ -1668,7 +1667,7 @@ If MaxUsers = 0 Then
 End If
 
 '&&&&&&&&&&&&&&&&&&&&& BALANCE &&&&&&&&&&&&&&&&&&&&&&&
-'Se agregó en LoadBalance y en el Balance.dat
+'Se agregï¿½ en LoadBalance y en el Balance.dat
 'PorcentajeRecuperoMana = val(GetVar(IniPath & "Server.ini", "BALANCE", "PorcentajeRecuperoMana"))
 
 ''&&&&&&&&&&&&&&&&&&&&& FIN BALANCE &&&&&&&&&&&&&&&&&&&&&&&
@@ -1758,7 +1757,7 @@ Call WriteVar(UserFile, "FACCIONES", "CaosMatados", CStr(UserList(UserIndex).Fac
 Call WriteVar(UserFile, "FACCIONES", "ArmiMatados", CStr(UserList(UserIndex).Faccion.ArmadaMatados))
 Call WriteVar(UserFile, "FACCIONES", "MiliMatados", CStr(UserList(UserIndex).Faccion.MilicianosMatados))
 
-'¿Fueron modificados los atributos del usuario?
+'ï¿½Fueron modificados los atributos del usuario?
 If Not UserList(UserIndex).flags.TomoPocion Then
     For LoopC = 1 To UBound(UserList(UserIndex).Stats.UserAtributos)
         Call WriteVar(UserFile, "ATRIBUTOS", "AT" & LoopC, CStr(UserList(UserIndex).Stats.UserAtributos(LoopC)))

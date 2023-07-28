@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmOpciones 
    BackColor       =   &H80000004&
    BorderStyle     =   4  'Fixed ToolWindow
-   ClientHeight    =   7680
+   ClientHeight    =   8040
    ClientLeft      =   15
    ClientTop       =   15
-   ClientWidth     =   7035
+   ClientWidth     =   8505
    ClipControls    =   0   'False
    ControlBox      =   0   'False
    FillColor       =   &H80000004&
@@ -22,8 +22,8 @@ Begin VB.Form frmOpciones
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7680
-   ScaleWidth      =   7035
+   ScaleHeight     =   8040
+   ScaleWidth      =   8505
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.HScrollBar scrSens 

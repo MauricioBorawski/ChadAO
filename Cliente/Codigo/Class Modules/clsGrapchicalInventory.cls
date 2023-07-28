@@ -173,10 +173,11 @@ End Property
 Public Property Get OBJType(ByVal slot As Byte) As Integer
 '***************************************************
 'Author: Juan Martín Sotuyo Dodero (Maraxus)
+'Coauthor: Mauricio Nicolas Borawski (Kokauzne)
 'Last Modify Date: 27/07/04
 'Retrieves the selected item's object type
 '***************************************************
-    OBJType = UserInventory(slot).OBJType
+    If Not slot = 0 Then OBJType = UserInventory(slot).OBJType
 End Property
 
 Public Property Get ItemName(ByVal slot As Byte) As String
@@ -223,7 +224,7 @@ Public Sub SetItem(ByVal slot As Byte, ByVal eOBJIndex As Integer, ByVal eAmount
 
 End Sub
 
-Private Function ClickItem(ByVal x As Long, ByVal y As Long) As Long
+Private Function ClickItem(ByVal X As Long, ByVal Y As Long) As Long
 '***************************************************
 'Author: Juan Martín Sotuyo Dodero (Maraxus)
 'Last Modify Date: 27/07/04
@@ -233,8 +234,8 @@ Private Function ClickItem(ByVal x As Long, ByVal y As Long) As Long
     Dim temp_x As Long
     Dim temp_y As Long
     
-    temp_x = x \ 32
-    temp_y = y \ 32
+    temp_x = X \ 32
+    temp_y = Y \ 32
     
     TempItem = temp_x + (temp_y + InventoryOffset) * (InventoryWindow.ScaleWidth \ 32) + 1
     
@@ -253,28 +254,28 @@ End Function
 
 Public Sub DrawInventory()
     Dim i As Byte
-    Dim x As Integer
-    Dim y As Integer
+    Dim X As Integer
+    Dim Y As Integer
     Dim temp_array(3) As Long
     
     For i = 1 To UBound(UserInventory)
         If UserInventory(i).grhindex Then
-            x = ((i - 1) Mod (InventoryWindow.width / 32)) * 32
-            y = ((i - 1) \ (InventoryWindow.width / 32)) * 32
+            X = ((i - 1) Mod (InventoryWindow.width / 32)) * 32
+            Y = ((i - 1) \ (InventoryWindow.width / 32)) * 32
             
             Engine.Long_To_RGB_List temp_array, -1
             
             If Not UserInventory(i).PuedeUsar = 1 Then
-                Call Engine.Draw_GrhIndex(UserInventory(i).grhindex, x - 1, y - 1, -65536)
+                Call Engine.Draw_GrhIndex(UserInventory(i).grhindex, X - 1, Y - 1, -65536)
             Else
-                Call Engine.Draw_GrhIndex(UserInventory(i).grhindex, x - 1, y - 1, -1)
+                Call Engine.Draw_GrhIndex(UserInventory(i).grhindex, X - 1, Y - 1, -1)
             End If
 
-            Call Engine.Text_Render(str(UserInventory(i).Amount), x - 5, y - 2, temp_array, 1)
+            Call Engine.Text_Render(str(UserInventory(i).Amount), X - 5, Y - 2, temp_array, 1)
             
             Engine.Long_To_RGB_List temp_array, D3DColorXRGB(255, 0, 0)
             If UserInventory(i).Equipped Then
-                Call Engine.Text_Render("+", x + 20, y, temp_array)
+                Call Engine.Text_Render("+", X + 20, Y, temp_array)
             End If
         End If
     Next i
@@ -293,7 +294,7 @@ Public Sub Initialize(ByRef InvPic As PictureBox)
 
 End Sub
 
-Private Sub InventoryWindow_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub InventoryWindow_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 '***************************************************
 'Author: Juan Martín Sotuyo Dodero (Maraxus)
 'Last Modify Date: 27/07/04
@@ -302,8 +303,8 @@ Private Sub InventoryWindow_MouseMove(Button As Integer, Shift As Integer, x As 
     Dim temp_x As Integer
     Dim temp_y As Integer
     
-    temp_x = x \ 32
-    temp_y = y \ 32
+    temp_x = X \ 32
+    temp_y = Y \ 32
     
     TempItem = temp_x + (temp_y + InventoryOffset) * (InventoryWindow.ScaleWidth \ 32) + 1
     
@@ -317,7 +318,7 @@ Private Sub InventoryWindow_MouseMove(Button As Integer, Shift As Integer, x As 
     End If
 End Sub
 
-Private Sub InventoryWindow_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub InventoryWindow_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
 '***************************************************
 'Author: Juan Martín Sotuyo Dodero (Maraxus)
 'Last Modify Date: 27/07/04
@@ -328,23 +329,23 @@ Private Sub InventoryWindow_MouseUp(Button As Integer, Shift As Integer, x As Si
     Dim prevSelItem As Long
     
     'Exit if it got outside the control's area
-    If x < 0 Or y < 0 Or x > InventoryWindow.width Or y > InventoryWindow.height Then _
+    If X < 0 Or Y < 0 Or X > InventoryWindow.width Or Y > InventoryWindow.height Then _
         Exit Sub
     
     prevSelItem = InvSelectedItem
 
     'Get the currently clickced item
-    InvSelectedItem = ClickItem(CInt(x), CInt(y))
+    InvSelectedItem = ClickItem(CInt(X), CInt(Y))
 
     RenderInv = True
 End Sub
 
-Public Function GetPos(ByVal x As Integer, ByVal y As Integer) As Byte
+Public Function GetPos(ByVal X As Integer, ByVal Y As Integer) As Byte
     Dim temp_x As Integer
     Dim temp_y As Integer
     
-    temp_x = x \ 32
-    temp_y = y \ 32
+    temp_x = X \ 32
+    temp_y = Y \ 32
     
     GetPos = temp_x + (temp_y + InventoryOffset) * (InventoryWindow.ScaleWidth \ 32) + 1
 End Function

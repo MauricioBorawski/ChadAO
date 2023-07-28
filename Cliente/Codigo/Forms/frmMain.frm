@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "RICHTX32.OCX"
+Object = "{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0"; "richtx32.ocx"
 Object = "{33101C00-75C3-11CF-A8A0-444553540000}#1.0#0"; "CSWSK32.ocx"
-Object = "{B370EF78-425C-11D1-9A28-004033CA9316}#2.0#0"; "Captura.ocx"
+Object = "{B370EF78-425C-11D1-9A28-004033CA9316}#2.0#0"; "captura.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00000000&
    BorderStyle     =   0  'None
@@ -65,14 +65,6 @@ Begin VB.Form frmMain
       Timeout         =   10000
       Type            =   1
       Urgent          =   0   'False
-   End
-   Begin VB.CommandButton Command1 
-      Caption         =   "Command1"
-      Height          =   375
-      Left            =   8640
-      TabIndex        =   42
-      Top             =   6960
-      Width           =   1215
    End
    Begin VB.PictureBox picMacro 
       AutoRedraw      =   -1  'True
@@ -365,14 +357,14 @@ Begin VB.Form frmMain
       ForeColor       =   &H00FFFFFF&
       Height          =   2565
       ItemData        =   "frmMain.frx":18F11
-      Left            =   8895
+      Left            =   8880
       List            =   "frmMain.frx":18F13
       MousePointer    =   99  'Custom
       TabIndex        =   2
       TabStop         =   0   'False
       Top             =   2100
       Visible         =   0   'False
-      Width           =   2475
+      Width           =   2595
    End
    Begin VB.PictureBox Minimap 
       AutoRedraw      =   -1  'True
@@ -1030,7 +1022,7 @@ Private Sub cmdCon_Click()
     picInv.Visible = False
 
     hlst.Visible = True
-    cmdInfo.Visible = True
+    cmdINFO.Visible = True
     CmdLanzar.Visible = True
     
     cmdMoverHechi(0).Visible = True
@@ -1054,7 +1046,7 @@ Private Sub cmdINV_Click()
     picInv.Visible = True
 
     hlst.Visible = False
-    cmdInfo.Visible = False
+    cmdINFO.Visible = False
     CmdLanzar.Visible = False
     
     cmdMoverHechi(0).Visible = False
@@ -1079,7 +1071,7 @@ Private Sub cmdMen_Click()
     picInv.Visible = False
 
     hlst.Visible = False
-    cmdInfo.Visible = False
+    cmdINFO.Visible = False
     CmdLanzar.Visible = False
     
     cmdMoverHechi(0).Visible = False
@@ -1157,6 +1149,10 @@ Private Sub cmdSalir_Click()
 End
 End Sub
 
+
+Private Sub Command1_Click()
+
+End Sub
 
 Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
     
@@ -1281,10 +1277,10 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
     End Select
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     InMouseExp = False
     If UserPasarNivel = 0 Then
-        lblExp.Caption = "¡Nivel máximo!"
+        lblExp.Caption = "ï¿½Nivel mï¿½ximo!"
     Else
         frmMain.lblExp.Caption = Round(CDbl(UserExp) * CDbl(100) / CDbl(UserPasarNivel), 2) & "%"
     End If
@@ -1314,11 +1310,11 @@ Private Sub Label6_Click()
 frmMain.Shermie.Visible = True
 End Sub
 
-Private Sub lblExp_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub lblExp_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
 InMouseExp = True
 lblExp.Caption = UserExp & "/" & UserPasarNivel
 If UserPasarNivel = 0 Then
-    lblExp.Caption = "¡Nivel máximo!"
+    lblExp.Caption = "ï¿½Nivel mï¿½ximo!"
 End If
 End Sub
 
@@ -1350,14 +1346,14 @@ Private Sub lblTxtGlobal_Click()
     lblTxtCombat.font.bold = False
 End Sub
 
-Private Sub MainViewPic_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub MainViewPic_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     MouseBoton = Button
     MouseShift = Shift
 End Sub
 
-Private Sub MainViewPic_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
-    clicX = x
-    clicY = y
+Private Sub MainViewPic_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    clicX = X
+    clicY = Y
 End Sub
 
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
@@ -1404,13 +1400,13 @@ Public Sub DesactivarMacroTrabajo()
 End Sub
 
 
-Private Sub Minimap_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
-    Call WriteWarpChar("YO", UserMap, IIf(x < 1, 1, x), y)
+Private Sub Minimap_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Call WriteWarpChar("YO", UserMap, IIf(X < 1, 1, X), Y)
     DibujarMiniMapPos
 End Sub
 
 
-Private Sub picMacro_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub picMacro_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
 BotonElegido = Index + 1
 
 If MacroKeys(BotonElegido).TipoAccion = 0 Or Button = vbRightButton Then
@@ -1485,7 +1481,7 @@ Private Sub cmdLanzar_Click()
     If hlst.List(hlst.ListIndex) <> "(Vacio)" And MainTimer.Check(TimersIndex.Work, False) Then
         If UserEstado = 1 Then
             With FontTypes(FontTypeNames.FONTTYPE_INFO)
-                Call ShowConsoleMsg("¡¡Estás muerto!!", .red, .green, .blue, .bold, .italic)
+                Call ShowConsoleMsg("ï¿½ï¿½Estï¿½s muerto!!", .red, .green, .blue, .bold, .italic)
             End With
         Else
             Call WriteCastSpell(hlst.ListIndex + 1)
@@ -1495,7 +1491,7 @@ Private Sub cmdLanzar_Click()
     End If
 End Sub
 
-Private Sub CmdLanzar_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub CmdLanzar_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     UsaMacro = False
     CnTd = 0
 End Sub
@@ -1535,7 +1531,7 @@ Private Sub MainViewPic_Click()
                         RestaurarIcon
                         UsingSkill = 0
                         With FontTypes(FontTypeNames.FONTTYPE_TALK)
-                            'Call AddtoRichTextBox(frmMain.RecChat, "No podés lanzar flechas tan rapido.", .red, .green, .blue, .bold, .italic)
+                            'Call AddtoRichTextBox(frmMain.RecChat, "No podï¿½s lanzar flechas tan rapido.", .red, .green, .blue, .bold, .italic)
                         End With
                         Exit Sub
                     End If
@@ -1546,7 +1542,7 @@ Private Sub MainViewPic_Click()
                             RestaurarIcon
                             UsingSkill = 0
                             With FontTypes(FontTypeNames.FONTTYPE_TALK)
-                                'Call AddtoRichTextBox(frmMain.RecChat, "No podés lanzar flechas tan rapido.", .red, .green, .blue, .bold, .italic)
+                                'Call AddtoRichTextBox(frmMain.RecChat, "No podï¿½s lanzar flechas tan rapido.", .red, .green, .blue, .bold, .italic)
                             End With
                             Exit Sub
                         End If
@@ -1559,7 +1555,7 @@ Private Sub MainViewPic_Click()
                                 RestaurarIcon
                                 UsingSkill = 0
                                 With FontTypes(FontTypeNames.FONTTYPE_TALK)
-                                   ' Call AddtoRichTextBox(frmMain.RecChat, "No puedes lanzar hechizos tan rápido.", .red, .green, .blue, .bold, .italic)
+                                   ' Call AddtoRichTextBox(frmMain.RecChat, "No puedes lanzar hechizos tan rï¿½pido.", .red, .green, .blue, .bold, .italic)
                                 End With
                                 Exit Sub
                             End If
@@ -1568,7 +1564,7 @@ Private Sub MainViewPic_Click()
                                 RestaurarIcon
                                 UsingSkill = 0
                                 With FontTypes(FontTypeNames.FONTTYPE_TALK)
-                                    'Call AddtoRichTextBox(frmMain.RecChat, "No podés lanzar hechizos tan rapido.", .red, .green, .blue, .bold, .italic)
+                                    'Call AddtoRichTextBox(frmMain.RecChat, "No podï¿½s lanzar hechizos tan rapido.", .red, .green, .blue, .bold, .italic)
                                 End With
                                 Exit Sub
                             End If
@@ -1623,7 +1619,7 @@ Private Sub Form_Load()
     SetWindowLong RecGlobal.hwnd, -20, &H20&
     SetWindowLong RecCombat.hwnd, -20, &H20&
     
-    frmMain.Caption = "CoverAO"
+    frmMain.Caption = "ChadAO"
     Detectar RecChat.hwnd, Me.hwnd
     
     Me.Picture = LoadInterface("Main")
@@ -1631,14 +1627,6 @@ Private Sub Form_Load()
     
     Me.Left = 0
     Me.Top = 0
-   
-    Dim CursorDir As String
-    Dim Cursor As Long
-    
-    CursorDir = App.Path & "\Recursos\Main.cur" 'Shermie80/maycolito (:
-    hSwapCursor = SetClassLong(frmMain.hwnd, GLC_HCURSOR, LoadCursorFromFile(CursorDir))
-    hSwapCursor = SetClassLong(frmMain.MainViewPic.hwnd, GLC_HCURSOR, LoadCursorFromFile(CursorDir))
-    hSwapCursor = SetClassLong(frmMain.hlst.hwnd, GLC_HCURSOR, LoadCursorFromFile(CursorDir))
     
     lblTxtGlobal.font.bold = False
     lblTxtDefault.font.bold = True
@@ -1646,9 +1634,9 @@ Private Sub Form_Load()
     RecChat.Visible = True
 End Sub
 
-Private Sub MainViewPic_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
-    MouseX = x
-    MouseY = y
+Private Sub MainViewPic_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    MouseX = X
+    MouseY = Y
 End Sub
 
 Private Sub hlst_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -1714,7 +1702,7 @@ Private Sub picInv_DblClick()
 
 End Sub
 
-Private Sub picInv_MouseUp(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub picInv_MouseUp(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Call Audio.PlayWave(SND_CLICK)
 End Sub
 
@@ -1744,7 +1732,7 @@ Private Sub SendTxt_Change()
 '**************************************************************
 'Author: Unknown
 'Last Modify Date: 3/06/2006
-'3/06/2006: Maraxus - impedí se inserten caractéres no imprimibles
+'3/06/2006: Maraxus - impedï¿½ se inserten caractï¿½res no imprimibles
 '**************************************************************
     If Len(SendTxt.Text) > 160 Then
         stxtbuffer = "Soy un cheater, avisenle a un gm"
@@ -1847,7 +1835,7 @@ Private Sub Socket1_LastError(ErrorCode As Integer, ErrorString As String, Respo
     'Handle socket errors
     '*********************************************
     If ErrorCode = 24036 Then
-        Call MsgBox("Si el servidor no le conecta en unos minutos, tiene problemas con su internet, por favor verifìquelo", vbApplicationModal + vbInformation + vbOKOnly + vbDefaultButton1, "Error")
+        Call MsgBox("Si el servidor no le conecta en unos minutos, tiene problemas con su internet, por favor verifï¿½quelo", vbApplicationModal + vbInformation + vbOKOnly + vbDefaultButton1, "Error")
         Exit Sub
     ElseIf ErrorCode = 24061 Then
         Call MsgBox("No hay coneccion con el servidor. Porfavor verifique su estado o bien su coneccion de internet.", vbApplicationModal + vbInformation + vbOKOnly + vbDefaultButton1, "Error")

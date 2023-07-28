@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}#1.1#0"; "SHDOCVW.DLL"
 Begin VB.Form frmConnect 
    BorderStyle     =   0  'None
    Caption         =   "Cover AO"
@@ -36,7 +35,7 @@ Begin VB.Form frmConnect
       IMEMode         =   3  'DISABLE
       Left            =   2280
       PasswordChar    =   "*"
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   3000
       Width           =   2295
    End
@@ -59,31 +58,6 @@ Begin VB.Form frmConnect
       Top             =   2040
       Width           =   4335
    End
-   Begin SHDocVwCtl.WebBrowser WebBrowser1 
-      Height          =   3135
-      Left            =   2160
-      TabIndex        =   2
-      Top             =   5160
-      Width           =   7635
-      ExtentX         =   13467
-      ExtentY         =   5530
-      ViewMode        =   0
-      Offline         =   0
-      Silent          =   0
-      RegisterAsBrowser=   0
-      RegisterAsDropTarget=   1
-      AutoArrange     =   0   'False
-      NoClientEdge    =   0   'False
-      AlignLeft       =   0   'False
-      NoWebView       =   0   'False
-      HideFileNames   =   0   'False
-      SingleClick     =   0   'False
-      SingleSelection =   0   'False
-      NoFolders       =   0   'False
-      Transparent     =   0   'False
-      ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-      Location        =   ""
-   End
    Begin VB.ListBox lst_servers 
       Appearance      =   0  'Flat
       BackColor       =   &H00000000&
@@ -100,7 +74,7 @@ Begin VB.Form frmConnect
       BackStyle       =   0  'Transparent
       Height          =   135
       Left            =   11400
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   120
       Width           =   135
    End
@@ -108,7 +82,7 @@ Begin VB.Form frmConnect
       BackStyle       =   0  'Transparent
       Height          =   255
       Left            =   11640
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   120
       Width           =   255
    End
@@ -140,20 +114,20 @@ Attribute VB_Exposed = False
 
 
 
-Private Sub cmdConnect_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdConnect_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     cmdConnect.Picture = LoadInterface("btnConectarApretado")
 End Sub
-Private Sub cmdConnect_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdConnect_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Button = 0 Then cmdConnect.Picture = LoadInterface("btnConectarMouse")
     Set cmdNewAccount.Picture = Nothing
     Set cmdNotReme.Picture = Nothing
 End Sub
 
-Private Sub cmdNewAccount_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdNewAccount_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     cmdNewAccount.Picture = LoadInterface("btnCuentaApretado")
 End Sub
 
-Private Sub cmdNewAccount_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdNewAccount_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Button = 0 Then cmdNewAccount.Picture = LoadInterface("btnCuentaMouse")
     Set cmdConnect.Picture = Nothing
     Set cmdNotReme.Picture = Nothing
@@ -163,12 +137,12 @@ Private Sub cmdNotReme_Click()
     Call Audio.PlayWave(SND_CLICK)
 End Sub
 
-Private Sub cmdNotReme_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdNotReme_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
     cmdNotReme.Picture = LoadInterface("btnPassApretado")
 
 End Sub
 
-Private Sub cmdNotReme_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub cmdNotReme_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     If Button = 0 Then cmdNotReme.Picture = LoadInterface("btnPassMouse")
     Set cmdConnect.Picture = Nothing
     Set cmdNewAccount.Picture = Nothing
@@ -195,14 +169,12 @@ Private Sub Form_Load()
     lst_servers.AddItem lServer(1).name
     lst_servers.AddItem lServer(2).name
 
-    WebBrowser1.Navigate "http://coverAO.jimdo.com"
-
     lst_servers.ListIndex = 1
 
     Usertxt.Refresh
 End Sub
 
-Private Sub Form_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
     Set cmdConnect.Picture = Nothing
     Set cmdNewAccount.Picture = Nothing
     Set cmdNotReme.Picture = Nothing

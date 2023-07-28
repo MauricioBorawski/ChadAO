@@ -38,6 +38,3 @@ Private Sub Command1_Click()
 Unload Me
 End Sub
 
-Private Sub Image1_Click()
-
-End Sub

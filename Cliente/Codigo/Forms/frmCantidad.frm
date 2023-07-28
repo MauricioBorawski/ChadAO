@@ -2,10 +2,10 @@ VERSION 5.00
 Begin VB.Form frmCantidad 
    BackColor       =   &H00000000&
    BorderStyle     =   0  'None
-   ClientHeight    =   1335
+   ClientHeight    =   1350
    ClientLeft      =   1635
    ClientTop       =   4410
-   ClientWidth     =   2220
+   ClientWidth     =   2235
    ClipControls    =   0   'False
    ControlBox      =   0   'False
    FillColor       =   &H00FFFFFF&
@@ -15,9 +15,9 @@ Begin VB.Form frmCantidad
    MaxButton       =   0   'False
    MinButton       =   0   'False
    Picture         =   "frmCantidad.frx":0000
-   ScaleHeight     =   89
+   ScaleHeight     =   90
    ScaleMode       =   3  'Pixel
-   ScaleWidth      =   148
+   ScaleWidth      =   149
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox Text1 

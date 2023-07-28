@@ -16,7 +16,7 @@ SndString=
 [BIND4]
 Accion=1
 InvSlot=0
-SndString=MEDITAR
+SndString=
 
 [BIND5]
 Accion=4
@@ -51,5 +51,5 @@ SndString=1
 [BIND11]
 Accion=1
 InvSlot=0
-SndString=SALIR
+SndString=
 
