@@ -1,14 +1,12 @@
 [BIND1]
-Accion= 1
-hlist= 0
+Accion= 2
+hlist= 1
 invslot= 0
-SndString=MOD STYLO EXP 999999999999999999999999999999
 
 [BIND2]
-Accion= 1
-hlist= 0
+Accion= 2
+hlist= 2
 invslot= 0
-SndString=MOD YO BODY 308
 
 [BIND3]
 Accion= 1
@@ -45,9 +43,9 @@ hlist= 9
 invslot= 0
 
 [BIND9]
-Accion= 4
+Accion= 3
 hlist= 0
-invslot= 9
+invslot= 6
 
 [BIND10]
 Accion= 1

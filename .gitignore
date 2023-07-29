@@ -3,3 +3,7 @@
 ######################
 
 *.exe
+
+Servidor/logs
+Servidor/Charfile
+Servidor/Cuentas
