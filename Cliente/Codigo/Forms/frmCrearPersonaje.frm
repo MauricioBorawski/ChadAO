@@ -55,7 +55,7 @@ Begin VB.Form frmCrearPersonaje
       Left            =   9345
       MaxLength       =   20
       TabIndex        =   46
-      Top             =   975
+      Top             =   960
       Visible         =   0   'False
       Width           =   1950
    End

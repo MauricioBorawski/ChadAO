@@ -753,7 +753,7 @@ Public Function OpenNPC(ByVal NpcNumber As Integer, Optional ByVal Respawn = Tru
         .Hostile = val(Leer.GetValue("NPC" & NpcNumber, "Hostile"))
         .flags.OldHostil = .Hostile
         
-        .GiveEXP = val(Leer.GetValue("NPC" & NpcNumber, "GiveEXP")) * 75
+        .GiveEXP = val(Leer.GetValue("NPC" & NpcNumber, "GiveEXP")) * 3
         
         .flags.ExpCount = .GiveEXP
         
@@ -761,7 +761,7 @@ Public Function OpenNPC(ByVal NpcNumber As Integer, Optional ByVal Respawn = Tru
         
         .flags.Domable = val(Leer.GetValue("NPC" & NpcNumber, "Domable"))
         
-        .GiveGLD = val(Leer.GetValue("NPC" & NpcNumber, "GiveGLD")) * 20
+        .GiveGLD = val(Leer.GetValue("NPC" & NpcNumber, "GiveGLD")) * 3
         
         .PoderAtaque = val(Leer.GetValue("NPC" & NpcNumber, "PoderAtaque"))
         .PoderEvasion = val(Leer.GetValue("NPC" & NpcNumber, "PoderEvasion"))

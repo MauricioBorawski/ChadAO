@@ -112,7 +112,7 @@ Exit Sub
 
 ErrorHandler:
     Close #1
-    MsgBox "Error al cargar el recurso de índice de gráficos: " & Err.Description & " (" & Grh & ")", vbCritical, "Error al cargar"
+    MsgBox "Error al cargar el recurso de ï¿½ndice de grï¿½ficos: " & Err.Description & " (" & Grh & ")", vbCritical, "Error al cargar"
 
 End Sub
 Sub CargarCuerpos()
@@ -400,7 +400,7 @@ Public Sub LoadMacros()
     Dim lc As Byte
     Dim Leer As New clsIniReader: Set Leer = New clsIniReader
 
-    ReDim Preserve MacroKeys(1 To 11) As tBoton
+    ReDim Preserve MacroKeys(0 To 10) As tBoton
     
     Leer.Initialize App.Path & "\Macros.dat"
     For lc = 1 To 11

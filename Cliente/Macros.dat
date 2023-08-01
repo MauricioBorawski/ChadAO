@@ -1,59 +1,54 @@
 [BIND1]
-Accion= 2
-hlist= 1
-invslot= 0
-
-[BIND2]
-Accion= 2
-hlist= 2
-invslot= 0
-
-[BIND3]
-Accion= 1
-hlist= 0
-invslot= 0
-SndString=MOD YO BODY 409
-
-[BIND4]
-Accion= 1
-hlist= 0
-invslot= 0
-SndString=TELEP YO 247 51 72
-
-[BIND5]
-Accion= 1
-hlist= 0
-invslot= 0
-SndString=TELEPLOC
-
-[BIND6]
 Accion= 4
 hlist= 0
-invslot= 6
+invslot= 5
 
-[BIND7]
-Accion= 1
+[BIND2]
+Accion= 4
+hlist= 0
+invslot= 5
+
+[BIND3]
+Accion= 3
+hlist= 0
+invslot= 3
+
+[BIND4]
+Accion= 0
 hlist= 0
 invslot= 0
-SndString=TELEP YO 750 50 50
+
+[BIND5]
+Accion= 0
+hlist= 0
+invslot= 0
+
+[BIND6]
+Accion= 0
+hlist= 0
+invslot= 0
+
+[BIND7]
+Accion= 0
+hlist= 0
+invslot= 0
 
 [BIND8]
-Accion= 2
-hlist= 9
+Accion= 0
+hlist= 0
 invslot= 0
 
 [BIND9]
-Accion= 3
 hlist= 0
+Accion= 3
 invslot= 6
 
 [BIND10]
-Accion= 1
+Accion= 4
 hlist= 0
-invslot= 0
-SndString=TELEP YO 34 41 87
+invslot= 5
 
 [BIND11]
-Accion= 2
-hlist= 2
+Accion= 0
+hlist= 0
 invslot= 0

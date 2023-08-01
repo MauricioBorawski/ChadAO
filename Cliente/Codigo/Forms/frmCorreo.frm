@@ -5,12 +5,12 @@ Begin VB.Form frmCorreo
    ClientHeight    =   6900
    ClientLeft      =   120
    ClientTop       =   390
-   ClientWidth     =   7200
+   ClientWidth     =   7155
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   6900
-   ScaleWidth      =   7200
+   ScaleWidth      =   7155
    ShowInTaskbar   =   0   'False
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame2 

@@ -225,7 +225,7 @@ Public Function CalcularDaï¿½o(ByVal UserIndex As Integer, Optional ByVal NpcInd
             ' Ataca a un npc?
             If NpcIndex > 0 Then
                 If Arma.proyectil = 1 Then
-                    ModifClase = ModClase(.Clase).Daï¿½oProyectiles
+                    ModifClase = ModClase(.Clase).DañoProyectiles
                     Daï¿½oArma = RandomNumber(Arma.MinHIT, Arma.MaxHIT)
                     Daï¿½oMaxArma = Arma.MaxHIT
                     
@@ -236,7 +236,7 @@ Public Function CalcularDaï¿½o(ByVal UserIndex As Integer, Optional ByVal NpcInd
                         'Daï¿½oMaxArma = Daï¿½oMaxArma + proyectil.MaxHIT
                     End If
                 Else
-                    ModifClase = ModClase(.Clase).Daï¿½oArmas
+                    ModifClase = ModClase(.Clase).DañoArmas
                     
                     If .Invent.WeaponEqpObjIndex = EspadaMataDragonesIndex Then ' Usa la mata Dragones?
                         If Npclist(NpcIndex).NPCtype = DRAGON Then 'Ataca Dragon?
@@ -254,7 +254,7 @@ Public Function CalcularDaï¿½o(ByVal UserIndex As Integer, Optional ByVal NpcInd
                 End If
             Else ' Ataca usuario
                 If Arma.proyectil = 1 Then
-                    ModifClase = ModClase(.Clase).Daï¿½oProyectiles
+                    ModifClase = ModClase(.Clase).DañoProyectiles
                     Daï¿½oArma = RandomNumber(Arma.MinHIT, Arma.MaxHIT)
                     Daï¿½oMaxArma = Arma.MaxHIT
                      
@@ -265,10 +265,10 @@ Public Function CalcularDaï¿½o(ByVal UserIndex As Integer, Optional ByVal NpcInd
                         'Daï¿½oMaxArma = Daï¿½oMaxArma + proyectil.MaxHIT
                     End If
                 Else
-                    ModifClase = ModClase(.Clase).Daï¿½oArmas
+                    ModifClase = ModClase(.Clase).DañoArmas
                     
                     If .Invent.WeaponEqpObjIndex = EspadaMataDragonesIndex Then
-                        ModifClase = ModClase(.Clase).Daï¿½oArmas
+                        ModifClase = ModClase(.Clase).DañoArmas
                         Daï¿½oArma = 1 ' Si usa la espada mataDragones daï¿½o es 1
                         Daï¿½oMaxArma = 1
                     Else
@@ -278,7 +278,7 @@ Public Function CalcularDaï¿½o(ByVal UserIndex As Integer, Optional ByVal NpcInd
                 End If
             End If
         Else
-            ModifClase = ModClase(.Clase).Daï¿½oWrestling
+            ModifClase = ModClase(.Clase).DañoWrestling
             If .Invent.NudiEqpIndex > 0 Then
                 Arma = ObjData(.Invent.NudiEqpIndex)
                 Daï¿½oArma = RandomNumber(Arma.MinHIT, Arma.MaxHIT)
@@ -330,9 +330,9 @@ Public Sub UserDaï¿½oNpc(ByVal UserIndex As Integer, ByVal NpcIndex As Integer)
         
         If .Stats.MinHP > 0 Then
             'Trata de apuï¿½alar por la espalda al enemigo
-            If PuedeApuï¿½alar(UserIndex) Then
-               Call DoApuï¿½alar(UserIndex, NpcIndex, 0, daï¿½o)
-               Call SubirSkill(UserIndex, Apuï¿½alar)
+            If PuedeApuñalar(UserIndex) Then
+               Call DoApuñalar(UserIndex, NpcIndex, 0, daï¿½o)
+               Call SubirSkill(UserIndex, Apuñalar)
             End If
         End If
         
@@ -1013,9 +1013,9 @@ Public Sub UserDaï¿½oUser(ByVal AtacanteIndex As Integer, ByVal VictimaIndex As 
             End If
                     
             'Trata de apuï¿½alar por la espalda al enemigo
-            If PuedeApuï¿½alar(AtacanteIndex) Then
-                Call DoApuï¿½alar(AtacanteIndex, 0, VictimaIndex, daï¿½o)
-                Call SubirSkill(AtacanteIndex, Apuï¿½alar)
+            If PuedeApuñalar(AtacanteIndex) Then
+                Call DoApuñalar(AtacanteIndex, 0, VictimaIndex, daï¿½o)
+                Call SubirSkill(AtacanteIndex, Apuñalar)
             End If
         End If
         
@@ -1118,14 +1118,14 @@ Public Function PuedeAtacar(ByVal attackerIndex As Integer, ByVal VictimIndex As
     'MUY importante el orden de estos "IF"...
     
     'Estas muerto no podes atacar
-    If UserList(attackerIndex).flags.Muerto = 1 Then
+    If UserList(attackerIndex).flags.muerto = 1 Then
         Call WriteConsoleMsg(1, attackerIndex, "No podï¿½s atacar porque estas muerto", FontTypeNames.FONTTYPE_INFO)
         PuedeAtacar = False
         Exit Function
     End If
     
     'No podes atacar a alguien muerto
-    If UserList(VictimIndex).flags.Muerto = 1 Then
+    If UserList(VictimIndex).flags.muerto = 1 Then
         Call WriteConsoleMsg(1, attackerIndex, "No podï¿½s atacar a un espiritu", FontTypeNames.FONTTYPE_INFO)
         PuedeAtacar = False
         Exit Function
@@ -1208,7 +1208,7 @@ Public Function PuedeAtacarNPC(ByVal attackerIndex As Integer, ByVal NpcIndex As
 'esta funciï¿½n para todo lo referente a ataque a un NPC. Ya sea Magia, Fï¿½sico o a Distancia.
 '***************************************************
     'Estas muerto?
-    If UserList(attackerIndex).flags.Muerto = 1 Then
+    If UserList(attackerIndex).flags.muerto = 1 Then
         Call WriteConsoleMsg(1, attackerIndex, "No podï¿½s atacar porque estas muerto", FontTypeNames.FONTTYPE_INFO)
         PuedeAtacarNPC = False
         Exit Function
@@ -1365,6 +1365,7 @@ Sub CalcularDarExp(ByVal UserIndex As Integer, ByVal NpcIndex As Integer, ByVal 
     
     '[Nacho] La experiencia a dar es la porcion de vida quitada * toda la experiencia
     ExpaDar = CLng(ElDaï¿½o * (Npclist(NpcIndex).GiveEXP / Npclist(NpcIndex).Stats.MaxHP))
+ 
     If ExpaDar <= 0 Then Exit Sub
     
     '[Nacho] Vamos contando cuanta experiencia sacamos, porque se da toda la que no se dio al user que mata al NPC

@@ -5,7 +5,7 @@ Object = "{B370EF78-425C-11D1-9A28-004033CA9316}#2.0#0"; "captura.ocx"
 Begin VB.Form frmMain 
    BackColor       =   &H00000000&
    BorderStyle     =   0  'None
-   Caption         =   "CoverAO"
+   Caption         =   "ChadAO"
    ClientHeight    =   9000
    ClientLeft      =   345
    ClientTop       =   360
@@ -279,7 +279,6 @@ Begin VB.Form frmMain
       _Version        =   393217
       BackColor       =   0
       BorderStyle     =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       MousePointer    =   99
@@ -311,7 +310,6 @@ Begin VB.Form frmMain
       _Version        =   393217
       BackColor       =   12632319
       BorderStyle     =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -413,7 +411,6 @@ Begin VB.Form frmMain
       _Version        =   393217
       BackColor       =   0
       BorderStyle     =   0
-      Enabled         =   -1  'True
       ReadOnly        =   -1  'True
       ScrollBars      =   2
       DisableNoScroll =   -1  'True
@@ -1150,10 +1147,6 @@ End
 End Sub
 
 
-Private Sub Command1_Click()
-
-End Sub
-
 Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
     
     If (Not SendTxt.Visible) Then
@@ -1184,9 +1177,6 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
                 
                 Case CustomKeys.BindedKey(eKeyType.mKeyToggleNames)
                     Nombres = Not Nombres
-                
-                Case CustomKeys.BindedKey(eKeyType.mKeyTamAnimal)
-                    Call WriteWork(eSkill.Domar)
                 
                 Case CustomKeys.BindedKey(eKeyType.mKeySteal)
                     Call WriteWork(eSkill.Robar)
@@ -1219,9 +1209,13 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
 
     Select Case KeyCode
         Case vbKeyF1 To vbKeyF11
-           Call frmBindKey.Bind_Accion(KeyCode - vbKeyF1 + 1)
-            
-       Case CustomKeys.BindedKey(eKeyType.mKeyTakeScreenShot)
+            If MacroKeys(KeyCode - vbKeyF1 + 1).TipoAccion = 0 Then
+                frmBindKey.Show vbModeless, frmMain
+            Else
+                Call frmBindKey.Bind_Accion(KeyCode - vbKeyF1 + 1)
+            End If
+
+        Case CustomKeys.BindedKey(eKeyType.mKeyTakeScreenShot)
         Dim i As Integer
         Captura1.Area = Ventana
         Captura1.Captura
@@ -1234,19 +1228,6 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
         Case CustomKeys.BindedKey(eKeyType.mKeyToggleFPS)
             FPSFLAG = Not FPSFLAG
 
-        Case CustomKeys.BindedKey(eKeyType.mKeyShowOptions)
-            Call frmOpciones.Show(vbModeless, frmMain)
-        
-        Case CustomKeys.BindedKey(eKeyType.mKeyMeditate)
-            Call WriteMeditate
-        
-        Case CustomKeys.BindedKey(eKeyType.mKeyWorkMacro)
-            If macrotrabajo.Enabled Then
-                DesactivarMacroTrabajo
-            Else
-                ActivarMacroTrabajo
-            End If
-        
         Case CustomKeys.BindedKey(eKeyType.mKeyExitGame)
             If frmMain.macrotrabajo.Enabled Then DesactivarMacroTrabajo
             Call WriteQuit
@@ -1260,8 +1241,6 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
             Else
                 If Not MainTimer.Check(TimersIndex.Attack) Or UserDescansar Or UserMeditar Then Exit Sub
             End If
-            
-            If macrotrabajo.Enabled Then DesactivarMacroTrabajo
             
             Call WriteAttack
         
@@ -1282,6 +1261,9 @@ Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y A
     If UserPasarNivel = 0 Then
         lblExp.Caption = "�Nivel m�ximo!"
     Else
+ 'If MacroKeys(FNUM).TipoAccion = 0 Then
+  '   frmBindKey.Show
+' End IF
         frmMain.lblExp.Caption = Round(CDbl(UserExp) * CDbl(100) / CDbl(UserPasarNivel), 2) & "%"
     End If
 End Sub
@@ -1412,7 +1394,7 @@ BotonElegido = Index + 1
 If MacroKeys(BotonElegido).TipoAccion = 0 Or Button = vbRightButton Then
     frmBindKey.Show vbModeless, frmMain
 Else
-    Call frmBindKey.Bind_Accion(Index + 1)
+    Call frmBindKey.Bind_Accion(BotonElegido)
 End If
 End Sub
 
@@ -1508,8 +1490,7 @@ Private Sub MainViewPic_Click()
 
     If Not Comerciando Then
         Call ConvertCPtoTP(MouseX, MouseY, tX, tY)
-        
-        
+         
         If MouseShift = 0 Then
             If MouseBoton <> vbRightButton Then
                 '[ybarra]

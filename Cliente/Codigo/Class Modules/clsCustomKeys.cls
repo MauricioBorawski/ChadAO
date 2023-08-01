@@ -50,7 +50,7 @@ Option Explicit
 
 ''
 'Number of Customizable Keys
-Private Const NUM_CUSTOM_KEYS As Byte = 26
+Private Const NUM_CUSTOM_KEYS As Byte = 33
 
 ''
 'Error Raised in case the key file doesn't exist
@@ -103,12 +103,8 @@ Public Enum eKeyType
     mKeyRequestRefresh
     mKeyToggleNames
     mKeyGetObject
-    mKeyToggleCombatMode
     mKeyEquipObject
-    mKeyTamAnimal
     mKeySteal
-    mKeyToggleSafeMode
-    mKeyToggleResuscitationSafe
     mKeyHide
     mKeyDropObject
     mKeyUseObject
@@ -117,10 +113,21 @@ Public Enum eKeyType
     mKeyTalkWithGuild
     mKeyToggleFPS
     mKeyTakeScreenShot
-    mKeyShowOptions
-    mKeyMeditate
-    mKeyWorkMacro
     mKeyExitGame
+    mKeyToggleCombatMode
+    mKeyToggleSafeMode
+    mKeyToggleResuscitationSafe
+    mKeyMacro1
+    mKeyMacro2
+    mKeyMacro3
+    mKeyMacro4
+    mKeyMacro5
+    mKeyMacro6
+    mKeyMacro7
+    mKeyMacro8
+    mKeyMacro9
+    mKeyMacro10
+    mKeyMacro11
 End Enum
 
 ''
@@ -348,24 +355,31 @@ Public Sub LoadDefaults()
     mappedKeys(eKeyType.mKeyRequestRefresh) = KeyCodeConstants.vbKeyL
     mappedKeys(eKeyType.mKeyToggleNames) = KeyCodeConstants.vbKeyN
     mappedKeys(eKeyType.mKeyGetObject) = KeyCodeConstants.vbKeyA
-    mappedKeys(eKeyType.mKeyToggleCombatMode) = KeyCodeConstants.vbKeyC
     mappedKeys(eKeyType.mKeyEquipObject) = KeyCodeConstants.vbKeyE
-    mappedKeys(eKeyType.mKeyTamAnimal) = KeyCodeConstants.vbKeyD
     mappedKeys(eKeyType.mKeySteal) = KeyCodeConstants.vbKeyR
-    mappedKeys(eKeyType.mKeyToggleSafeMode) = KeyCodeConstants.vbKeyMultiply
-    mappedKeys(eKeyType.mKeyToggleResuscitationSafe) = KeyCodeConstants.vbKeyEnd
     mappedKeys(eKeyType.mKeyHide) = KeyCodeConstants.vbKeyO
     mappedKeys(eKeyType.mKeyDropObject) = KeyCodeConstants.vbKeyT
     mappedKeys(eKeyType.mKeyUseObject) = KeyCodeConstants.vbKeyU
     mappedKeys(eKeyType.mKeyAttack) = KeyCodeConstants.vbKeyControl
     mappedKeys(eKeyType.mKeyTalk) = KeyCodeConstants.vbKeyReturn
     mappedKeys(eKeyType.mKeyTalkWithGuild) = KeyCodeConstants.vbKeyDelete
-    mappedKeys(eKeyType.mKeyToggleFPS) = KeyCodeConstants.vbKeyF4
-    mappedKeys(eKeyType.mKeyTakeScreenShot) = KeyCodeConstants.vbKeyF12
-    mappedKeys(eKeyType.mKeyShowOptions) = KeyCodeConstants.vbKeyF5
-    mappedKeys(eKeyType.mKeyMeditate) = KeyCodeConstants.vbKeyF6
-    mappedKeys(eKeyType.mKeyWorkMacro) = KeyCodeConstants.vbKeyF8
-    mappedKeys(eKeyType.mKeyExitGame) = KeyCodeConstants.vbKeyF12
+    mappedKeys(eKeyType.mKeyToggleFPS) = KeyCodeConstants.vbKeyMultiply
+    mappedKeys(eKeyType.mKeyTakeScreenShot) = KeyCodeConstants.vbKeySnapShot
+    mappedKeys(eKeyType.mKeyExitGame) = KeyCodeConstants.vbKeyEscape
+    mappedKeys(eKeyType.mKeyToggleCombatMode) = KeyCodeConstants.vbKeyC
+    mappedKeys(eKeyType.mKeyToggleSafeMode) = KeyCodeConstants.vbKeyMultiply
+    mappedKeys(eKeyType.mKeyToggleResuscitationSafe) = KeyCodeConstants.vbKeyEnd
+    mappedKeys(eKeyType.mKeyMacro1) = KeyCodeConstants.vbKeyF1
+    mappedKeys(eKeyType.mKeyMacro2) = KeyCodeConstants.vbKeyF2
+    mappedKeys(eKeyType.mKeyMacro3) = KeyCodeConstants.vbKeyF3
+    mappedKeys(eKeyType.mKeyMacro4) = KeyCodeConstants.vbKeyF4
+    mappedKeys(eKeyType.mKeyMacro5) = KeyCodeConstants.vbKeyF5
+    mappedKeys(eKeyType.mKeyMacro6) = KeyCodeConstants.vbKeyF6
+    mappedKeys(eKeyType.mKeyMacro7) = KeyCodeConstants.vbKeyF7
+    mappedKeys(eKeyType.mKeyMacro8) = KeyCodeConstants.vbKeyF8
+    mappedKeys(eKeyType.mKeyMacro9) = KeyCodeConstants.vbKeyF9
+    mappedKeys(eKeyType.mKeyMacro10) = KeyCodeConstants.vbKeyF10
+    mappedKeys(eKeyType.mKeyMacro11) = KeyCodeConstants.vbKeyF11
 End Sub
 
 ''

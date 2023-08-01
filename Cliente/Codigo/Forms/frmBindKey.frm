@@ -59,7 +59,7 @@ Begin VB.Form frmBindKey
    Begin VB.OptionButton optAccion 
       Caption         =   "Equipar ítem elegido"
       Height          =   195
-      Index           =   3
+      Index           =   2
       Left            =   120
       TabIndex        =   3
       Top             =   2970
@@ -68,7 +68,7 @@ Begin VB.Form frmBindKey
    Begin VB.OptionButton optAccion 
       Caption         =   "Usar ítem elegido"
       Height          =   195
-      Index           =   2
+      Index           =   3
       Left            =   120
       TabIndex        =   2
       Top             =   2700
@@ -214,12 +214,10 @@ End Sub
 
 Private Sub cmdCancel_Click()
 
-MacroKeys(BotonElegido).TipoAccion = 0
+MacroKeys(BotonElegido + 1).TipoAccion = 0
 Unload Me
 
 End Sub
-
-
 
 Private Sub optAccion_Click(Index As Integer)
 
@@ -233,27 +231,27 @@ End Sub
 
 Private Sub Form_Load()
 
-lblTecla.Caption = "Tecla: F" & BotonElegido
-Label2.Caption = "Adevertencia: el uso incorrecto de este sitema puede terminar en severas penas, entre ellas la prohibicion de ingreso al juego. Recomendamos leer el reglamento antes de utilizarlos."
+    lblTecla.Caption = "Tecla: F" & BotonElegido
+    Label2.Caption = "Adevertencia: el uso incorrecto de este sitema puede terminar en severas penas, entre ellas la prohibicion de ingreso al juego. Recomendamos leer el reglamento antes de utilizarlos."
 
-If MacroKeys(BotonElegido).TipoAccion <> 0 Then
+    If MacroKeys(BotonElegido).TipoAccion <> 0 Then
 
-    Select Case MacroKeys(BotonElegido).TipoAccion
-        Case 1 'Envia comando
-            optAccion(0).value = True
-            txtComandoEnvio.Text = MacroKeys(BotonElegido).SendString
-            txtComandoEnvio.Enabled = True
-        Case 2 'Lanza hechizo
-            optAccion(1).value = True
-        Case 3 'Equipa
-            optAccion(2).value = True
-        Case 4 'Usa
-            optAccion(3).value = True
-    End Select
-    
-End If
+        Select Case MacroKeys(BotonElegido + 1).TipoAccion
+            Case 1 'Envia comando
+                optAccion(0).value = True
+                txtComandoEnvio.Text = MacroKeys(BotonElegido).SendString
+                txtComandoEnvio.Enabled = True
+            Case 2 'Lanza hechizo
+                optAccion(1).value = True
+            Case 3 'Equipa
+                optAccion(2).value = True
+            Case 4 'Usa
+                optAccion(3).value = True
+        End Select
+    End If
 
 End Sub
+
 Public Sub DibujarMenuMacros(Optional ActualizarCual As Integer = 0, Optional AlphaEffect As Byte = 0)
 
 Dim i As Integer
@@ -302,25 +300,25 @@ End If
 End Sub
 
 Public Sub Bind_Accion(ByVal FNUM As Integer)
+    If MacroKeys(FNUM).TipoAccion = 0 Then Exit Sub
 
-If MacroKeys(FNUM).TipoAccion = 0 Then Exit Sub
+    Select Case MacroKeys(FNUM).TipoAccion
 
-Select Case MacroKeys(FNUM).TipoAccion
-
-Case 1 'Envia comando
-    Call ParseUserCommand("/" & MacroKeys(FNUM).SendString)
-Case 2 'Lanza hechizo
-    If frmMain.hlst.List(MacroKeys(FNUM).hlist - 1) <> "(None)" And MainTimer.Check(TimersIndex.Work, False) Then
-        If UserEstado = 1 Then Exit Sub
-        Call WriteCastSpell(frmMain.hlst.ListIndex + 1)
-        Call WriteWork(eSkill.Magia)
-        UsaMacro = True
-    End If
-Case 3 'Equipa
-    If UserEstado = 1 Then Exit Sub
-    Call WriteEquipItem(MacroKeys(FNUM).invslot)
-Case 4 'Usa
-    If MainTimer.Check(TimersIndex.UseItemWithU) Then Call WriteUseItem(MacroKeys(FNUM).invslot)
-End Select
+        Case 1 'Envia comando
+            Call ParseUserCommand("/" & MacroKeys(FNUM).SendString)
+        Case 2 'Lanza hechizo
+            If frmMain.hlst.List(MacroKeys(FNUM).hlist - 1) <> "(None)" And MainTimer.Check(TimersIndex.Work, False) Then
+                If UserEstado = 1 Then Exit Sub
+                Call WriteCastSpell(frmMain.hlst.ListIndex + 1)
+                Call WriteWork(eSkill.Magia)
+                UsaMacro = True
+            End If
+        Case 3 'Equipa
+            If UserEstado = 1 Then Exit Sub
+            Call WriteEquipItem(MacroKeys(FNUM).invslot)
+        Case 4 'Usa
+            ' If MainTimer.Check(TimersIndex.UseItemWithU) Then Call WriteUseItem(MacroKeys(FNUM).invslot)
+            WriteUseItem (MacroKeys(FNUM).invslot)
+    End Select
 
 End Sub
