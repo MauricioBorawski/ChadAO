@@ -171,7 +171,7 @@ For i = optAccion.LBound To optAccion.UBound
 Next i
 
 Select Case MacroKeys(BotonElegido).TipoAccion
-    
+   ' Comando 
     Case 1
         If LenB(txtComandoEnvio.Text) = 0 Then
             MsgBox "Debes escribir un comando válido a enviar.", , "Advertencia"
@@ -181,17 +181,17 @@ Select Case MacroKeys(BotonElegido).TipoAccion
         MacroKeys(BotonElegido).SendString = UCase$(txtComandoEnvio.Text)
         MacroKeys(BotonElegido).hlist = 0
         MacroKeys(BotonElegido).invslot = 0
-    
+   ' Hechizo
     Case 2
         MacroKeys(BotonElegido).hlist = frmMain.hlst.ListIndex + 1
         MacroKeys(BotonElegido).SendString = vbNullString
         MacroKeys(BotonElegido).invslot = 0
-    
+   ' Usar Item 
     Case 3
         MacroKeys(BotonElegido).hlist = 0
         MacroKeys(BotonElegido).SendString = vbNullString
         MacroKeys(BotonElegido).invslot = Inventario.SelectedItem
-    
+   ' Equipar item 
     Case 4
         MacroKeys(BotonElegido).hlist = 0
         MacroKeys(BotonElegido).SendString = vbNullString
@@ -234,7 +234,7 @@ Private Sub Form_Load()
     lblTecla.Caption = "Tecla: F" & BotonElegido
     Label2.Caption = "Adevertencia: el uso incorrecto de este sitema puede terminar en severas penas, entre ellas la prohibicion de ingreso al juego. Recomendamos leer el reglamento antes de utilizarlos."
 
-    If MacroKeys(BotonElegido).TipoAccion <> 0 Then
+    If MacroKeys(BotonElegido + 1).TipoAccion <> 0 Then
 
         Select Case MacroKeys(BotonElegido + 1).TipoAccion
             Case 1 'Envia comando

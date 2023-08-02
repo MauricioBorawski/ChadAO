@@ -1209,7 +1209,10 @@ Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
 
     Select Case KeyCode
         Case vbKeyF1 To vbKeyF11
-            If MacroKeys(KeyCode - vbKeyF1 + 1).TipoAccion = 0 Then
+            ' Note BotonElegido es una variable global
+            BotonElegido = (KeyCode - vbKeyF1) + 1
+
+            If MacroKeys(BotonElegido).TipoAccion = 0 Then
                 frmBindKey.Show vbModeless, frmMain
             Else
                 Call frmBindKey.Bind_Accion(KeyCode - vbKeyF1 + 1)

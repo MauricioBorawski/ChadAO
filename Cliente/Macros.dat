@@ -4,14 +4,14 @@ hlist= 0
 invslot= 5
 
 [BIND2]
-Accion= 4
+Accion= 0
 hlist= 0
-invslot= 5
+invslot= 0
 
 [BIND3]
-Accion= 3
+Accion= 0
 hlist= 0
-invslot= 3
+invslot= 0
 
 [BIND4]
 Accion= 0
@@ -40,13 +40,13 @@ invslot= 0
 
 [BIND9]
 hlist= 0
-Accion= 3
-invslot= 6
+Accion= 0
+invslot= 0
 
 [BIND10]
-Accion= 4
+Accion= 0
 hlist= 0
-invslot= 5
+invslot= 0
 
 [BIND11]
 Accion= 0
