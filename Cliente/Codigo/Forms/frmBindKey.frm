@@ -303,13 +303,12 @@ Public Sub Bind_Accion(ByVal FNUM As Integer)
     If MacroKeys(FNUM).TipoAccion = 0 Then Exit Sub
 
     Select Case MacroKeys(FNUM).TipoAccion
-
         Case 1 'Envia comando
             Call ParseUserCommand("/" & MacroKeys(FNUM).SendString)
         Case 2 'Lanza hechizo
             If frmMain.hlst.List(MacroKeys(FNUM).hlist - 1) <> "(None)" And MainTimer.Check(TimersIndex.Work, False) Then
                 If UserEstado = 1 Then Exit Sub
-                Call WriteCastSpell(frmMain.hlst.ListIndex + 1)
+                Call WriteCastSpell(MacroKeys(FNUM).hlist)
                 Call WriteWork(eSkill.Magia)
                 UsaMacro = True
             End If
@@ -317,8 +316,7 @@ Public Sub Bind_Accion(ByVal FNUM As Integer)
             If UserEstado = 1 Then Exit Sub
             Call WriteEquipItem(MacroKeys(FNUM).invslot)
         Case 4 'Usa
-            ' If MainTimer.Check(TimersIndex.UseItemWithU) Then Call WriteUseItem(MacroKeys(FNUM).invslot)
-            WriteUseItem (MacroKeys(FNUM).invslot)
+            If MainTimer.Check(TimersIndex.UseItemWithU) Then Call WriteUseItem(MacroKeys(FNUM).invslot)
     End Select
 
 End Sub

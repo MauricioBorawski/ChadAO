@@ -364,7 +364,7 @@ Public Sub LoadDefaults()
     mappedKeys(eKeyType.mKeyTalk) = KeyCodeConstants.vbKeyReturn
     mappedKeys(eKeyType.mKeyTalkWithGuild) = KeyCodeConstants.vbKeyDelete
     mappedKeys(eKeyType.mKeyToggleFPS) = KeyCodeConstants.vbKeyMultiply
-    mappedKeys(eKeyType.mKeyTakeScreenShot) = KeyCodeConstants.vbKeySnapShot
+    mappedKeys(eKeyType.mKeyTakeScreenShot) = KeyCodeConstants.vbKeyF12
     mappedKeys(eKeyType.mKeyExitGame) = KeyCodeConstants.vbKeyEscape
     mappedKeys(eKeyType.mKeyToggleCombatMode) = KeyCodeConstants.vbKeyC
     mappedKeys(eKeyType.mKeyToggleSafeMode) = KeyCodeConstants.vbKeyMultiply

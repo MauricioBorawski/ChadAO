@@ -4,14 +4,14 @@ hlist= 0
 invslot= 5
 
 [BIND2]
-Accion= 0
-hlist= 0
+Accion= 2
+hlist= 1
 invslot= 0
 
 [BIND3]
-Accion= 0
+Accion= 4
 hlist= 0
-invslot= 0
+invslot= 3
 
 [BIND4]
 Accion= 0
